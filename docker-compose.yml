@@ -1,0 +1,44 @@
+version: "3.1"
+services:
+  drupaldb:
+    container_name: drupaldb
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: drupalDB
+      MYSQL_USER: bisso
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3308:3306"
+    volumes:
+      - ./:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    container_name: drupalphpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "9082:80"
+    restart: always
+    environment:
+      PMA_HOST: drupaldb
+    depends_on:
+      - drupaldb
+
+  drupal:
+    container_name: drupal
+    image: drupal:latest
+    ports:
+      - 8082:80
+    volumes:
+      - ./web:/var/www/html
+      - ./vendor:/opt/drupal/vendor
+      - ./composer.json:/opt/drupal/composer.json
+      - ./composer.lock:/opt/drupal/composer.lock
+    depends_on:
+      - drupaldb
+    # links:
+    #   - drupaldb
+    # entrypoint:
+    #   - MYSQL_USERNAME=root
+    #   - MYSQL_PASSWORD=pass
