@@ -21,33 +21,40 @@ cp -a ./drupal/. ./
 sudo rm -rf ./drupal/
 ```
 
-### copy default.settings.php to settings.php
+### build the container
 
 ```
-cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
+docker compose up -d
 ```
+
+- check all the containers are up and running
 
 ### Installing drupal site
 
 - go to: http://localhost:8082/
 - go through the installation process
+- \*\*\*In verify requirements, you may encounter an error: sites/default/files folder can not be created due to permission problem. Reloading the page fix the problem and create the folder. If it does not fix the problem, please check the permission of the directory\*\*\*.
+
+### Error: Settings file:
+
+- solution: copy default.settings.php to settings.php
+
+```
+cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
+```
+
+- when it is get created reload the page
 
 ### configur database with the following info
 
 ```
 
-  database: => drupalDB
+  database: drupalDB
   username: root
   password: pass
   host: drupaldb
   port: 3306
 
-```
-
-### build the container
-
-```
-docker compose up -d
 ```
 
 composer require --dev drush/drush
