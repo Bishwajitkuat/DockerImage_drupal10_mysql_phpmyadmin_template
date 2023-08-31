@@ -29,23 +29,32 @@ docker compose up -d
 
 - check all the containers are up and running
 
-### Installing drupal site
+### installing drupal site
 
 - go to: http://localhost:8082/
 - go through the installation process
-- \*\*\*In verify requirements, you may encounter an error: sites/default/files folder can not be created due to permission problem. Reloading the page fix the problem and create the folder. If it does not fix the problem, please check the permission of the directory\*\*\*.
 
-### Error: Settings file:
+### Error: File system: In Verify requirements section (you may encounter)
 
-- solution: copy default.settings.php to settings.php
+- Problem: The directory sites/default/files does not exist. An automated attempt to create this directory failed, possibly due to a permissions problem.
+
+- Solution: Reloading the page fixs the problem and create the folder. If it does not fix the problem, please check the permission of the directory
+
+### Error: Settings file: In Verify requirements section
+
+- Problem: The Settings file does not exist.
+
+- Solution:
 
 ```
 cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
 ```
 
-- when it is get created reload the page
+- When it is get created, reload the page
 
 ### configur database with the following info
+
+- You may need to click "Advanced options" to see all the fields
 
 ```
 
@@ -57,12 +66,15 @@ cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
 
 ```
 
-composer require --dev drush/drush
+Now you would be able to see your new drupal site.
 
-wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/latest/download/drush.phar
+### copy example.gitignore to .gitignore (optional)
 
-chmod +x drush.phar
+```
+cp ./example.gitignore ./.gitignore
+```
 
-sudo mv drush.phar /usr/local/bin/drush
+## **_CAUTION:_**
 
-export DRUSH_LAUNCHER_FALLBACK=/path/to/drush
+- It will delete any database named "drupalDB" during installation if it's already existed.
+- If ports: "3306", "80", "3308", "9082", "8082" are in use by any other services during installation, container related to conflicting port may not install or run.
