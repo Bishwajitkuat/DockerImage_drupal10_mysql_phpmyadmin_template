@@ -27,13 +27,13 @@ services:
 
   drupal:
     container_name: ${DRUPAL_CONTAINER_NAME}
-    image: drupal:php8.2-fpm-bookworm
+    image: drupal:latest
     ports:
       - 8082:80
     volumes:
-      - ./web:/var/www/html
-      - ./vendor:/opt/drupal/vendor
-      - ./composer.json:/opt/drupal/composer.json
-      - ./composer.lock:/opt/drupal/composer.lock
+      - ./drupal/web:/var/www/html
+      - ./drupal/vendor:/opt/drupal/vendor
+      - ./drupal/composer.json:/opt/drupal/composer.json
+      - ./drupal/composer.lock:/opt/drupal/composer.lock
     depends_on:
       - drupaldb
