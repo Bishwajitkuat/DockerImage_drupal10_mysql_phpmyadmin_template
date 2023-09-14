@@ -1,21 +1,21 @@
-version: "3.1"
+version: "3.8"
 services:
   drupaldb:
-    container_name: drupaldb
-    image: mysql:latest
+    container_name: ${DB_CONTAINER_NAME}
+    image: mysql:8.0.34-debian
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: pass
-      MYSQL_DATABASE: drupalDB
-      MYSQL_USER: bisso
-      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3308:3306"
     volumes:
       - ./:/docker-entrypoint-initdb.d
 
   phpmyadmin:
-    container_name: drupalphpmyadmin
+    container_name: ${PHPMYADMIN_CONTAINER_NAME}
     image: phpmyadmin/phpmyadmin
     ports:
       - "9082:80"
@@ -26,8 +26,8 @@ services:
       - drupaldb
 
   drupal:
-    container_name: drupal
-    image: drupal:latest
+    container_name: ${DRUPAL_CONTAINER_NAME}
+    image: drupal:php8.2-fpm-bookworm
     ports:
       - 8082:80
     volumes:
@@ -37,8 +37,3 @@ services:
       - ./composer.lock:/opt/drupal/composer.lock
     depends_on:
       - drupaldb
-    # links:
-    #   - drupaldb
-    # entrypoint:
-    #   - MYSQL_USERNAME=root
-    #   - MYSQL_PASSWORD=pass
