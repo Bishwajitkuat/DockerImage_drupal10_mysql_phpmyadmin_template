@@ -18,3 +18,4 @@ drupal/.idea/
 # Ignore .env files as they are personal
 drupal/.env
 .envs
+database/mysql

@@ -4,6 +4,14 @@
 
 This Image containes three images: Drupal10, MySQL and PhpMyAdmin. The values in the .env file are used during build of the image. If you wish to change the container names and mysql database name, user and password, you can do so in the .env file and init.sql file. This project aims to set up a drupal development environment quickly and efficiently. You must have docker installed and running in order to build this image.
 
+## Technologies:
+
+- Docker
+- Drupal10
+- MySQL
+- PhpMyAdmin
+- shell script
+
 ## **_Detailed Installation Processe_**
 
 ### Step 1: clone the repo and cd to project root folder
@@ -89,7 +97,7 @@ Now you would be able to see your new drupal site.
 - It will delete any database named "drupalDB" during installation if it's already existed.
 - If ports: "3306", "80", "3308", "9082", "8082" are in use by any other services during installation, container related to conflicting port may not install or run.
 
-## quick Installation Processe for linux
+## quick Installation Processe
 
 some steps in detaile installation procees are combined into a shell file to shorten the installation steps.
 
