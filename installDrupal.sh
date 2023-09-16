@@ -1,3 +1,5 @@
+cp example.env .env
+cp example.gitignore .gitignore
 sudo apt-get install php-xml
 sudo apt-get install php-gd
 sudo apt-get install php-intl
