@@ -75,7 +75,7 @@ cp ./drupal/web/sites/default/default.settings.php ./drupal/web/sites/default/se
 
 - When it is get created, reload the page
 
-### Step 8: configur database with the info in .env file
+#### Step 7.3: configur database with the info in .env file
 
 - You may need to click "Advanced options" to see all the fields
 - Please replace MYSQL_DATABASE, MYSQL_ROOT_PASSWORD, DB_CONTAINER_NAME with actual values from .env file
