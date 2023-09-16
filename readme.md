@@ -2,7 +2,7 @@
 
 ## Description
 
-This Image containes three images: Drupal10, MySQL and PhpMyAdmin. The values in the .env file are used during build of the image. If you wish to change the container names and mysql database name, user and password, you can do so in the .env file and init.sql file. This project aims to set up a drupal development environment quickly and efficiently.
+This Image containes three images: Drupal10, MySQL and PhpMyAdmin. The values in the .env file are used during build of the image. If you wish to change the container names and mysql database name, user and password, you can do so in the .env file and init.sql file. This project aims to set up a drupal development environment quickly and efficiently. You must have docker installed and running in order to build this image.
 
 ## **_Detailed Installation Processe_**
 
@@ -62,7 +62,7 @@ docker compose up -d
 - Solution:
 
 ```
-cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
+cp ./drupal/web/sites/default/default.settings.php ./drupal/web/sites/default/settings.php
 ```
 
 - When it is get created, reload the page
